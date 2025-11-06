@@ -1,59 +1,46 @@
-# Atividade POO 
+def  nome_valido():
+    
+    while True:
+        try:
+            nome = input("Digite seu nome: ").strip()
 
-# 1 QUESTÃO
+            if not nome:
+                raise ValueError("O nome não pode ser nulo.")
 
-lista_notas = []
+            if any(char.isdigit() for char in nome):
+                raise ValueError("O nome não deve conter números.")
 
-while True:
-    valores = float(input("Digite uma nota: (Digite -1 para encerrar:)"))
-    if valores != (-1):
-        lista_notas.append(valores)
-    else:
-        break
+            return nome
+        except ValueError as erro:
+            print(f"ERRO: {erro}  tente novamente.")
+        except Exception as erro:
+            print(f"Ocorreu um erro inesperado ao processar o nome: {erro}")
 
-print(lista_notas)
+def  idade_valida():
+    while True:
+        try:
+            idade_str = input("Digite sua idade: ").strip()
+            idade = int(idade_str)
 
-# A
+            if idade <= 0 or idade > 120:
+                print("ERRO: A idade deve ser um valor positivo e razoável.tente novamente.")
+                continue 
 
-print(f"Esta lista tem {len(lista_notas)} notas.")
+            return idade
+        except ValueError:
+           
+            print("ERRO: A idade deve ser um número inteiro. não digite letras ou caracteres especiais.")
+        except Exception as e:
+           
+            print(f"Ocorreu um erro inesperado ao processar a idade: {KeyError}")
 
-#  B
+def cadastro_principal():
+    print("Iniciando seu cadastro:")
 
-print(lista_notas)
+    nome_usuario = nome_valido()
+    idade_usuario =idade_valida()
 
-# C
-
-for nota in reversed (lista_notas):
-    print(nota)
-
-#  D
-
-print(sum(lista_notas))
-
-#  E
-
-print(sum(lista_notas) / len(lista_notas))
-
-# F
-quantidade = 0
-for nota in lista_notas:
-    if nota > (sum(lista_notas) / len(lista_notas)):
-        quantidade += 1
-print(f"notas acima da média: {quantidade}")
-
-#  G
-
-quantidade = 0
-for nota in lista_notas:
-    if nota < 7:
-        quantidade += 1
-print(f"notas abaixo de 7: {quantidade}")
-
-#  H
-
-print("EU AMO POO.")
-
-
-
-
-
+    print("\n--- Cadastro Finalizado ---")
+    print(f"Nome: {nome_usuario}")
+    print(f"Idade: {idade_usuario} anos")
+cadastro_principal()
